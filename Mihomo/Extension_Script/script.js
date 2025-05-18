@@ -788,25 +788,6 @@ function overwriteRules(params) {
             format: "text",
             proxy: "🎯 节点选择"
         },
-        // 流媒体
-        stream_non_ip: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/stream.txt",
-            path: "./rule_set/sukkaw_ruleset/stream_non_ip.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        stream_ip: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/ip/stream.txt",
-            path: "./rule_set/sukkaw_ruleset/stream_ip.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
         // AIGC
         ai_non_ip: {
             type: "http",
