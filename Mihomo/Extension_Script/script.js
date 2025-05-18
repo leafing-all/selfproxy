@@ -1042,8 +1042,8 @@ params["rules"] = [
   ...rules
 ];
 
-    params["rule-providers"] = ruleProviders;
-    params["rules"] = rules;
+    //params["rule-providers"] = ruleProviders;
+    //params["rules"] = rules;
 }
 
 function getProxiesByRegex(params, regex) {
