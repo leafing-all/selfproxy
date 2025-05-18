@@ -836,34 +836,6 @@ function overwriteRules(params) {
             format: "text",
             proxy: "🎯 节点选择"
         },
-        // apple
-        apple_cdn: {
-            type: "http",
-            behavior: "domain",
-            url: "https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt",
-            path: "./rule_set/sukkaw_ruleset/apple_cdn.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        apple_services: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/apple_services.txt",
-            path: "./rule_set/sukkaw_ruleset/apple_services.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        apple_cn_non_ip: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt",
-            path: "./rule_set/sukkaw_ruleset/apple_cn_non_ip.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
         // microsoft
         microsoft_cdn_non_ip: {
             type: "http",
@@ -967,6 +939,108 @@ function overwriteRules(params) {
             proxy: "🎯 节点选择"
         }
     };
+const customRuleProviders = {
+  // GitHub 相关规则（🚀 GitHub）
+  github_rules: {
+    type: "http",
+    behavior: "domain",
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GitHub/GitHub.list",
+    path: "./rule_set/github_rules.list",
+    interval: 43200,
+    format: "list",
+    proxy: "🚀 GitHub"
+  },
+  // Twitter (X) 相关规则（✖️ X）
+  twitter_rules: {
+    type: "http",
+    behavior: "domain",
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.list",
+    path: "./rule_set/twitter_rules.list",
+    interval: 43200,
+    format: "list",
+    proxy: "✖️ X"
+  },
+  // YouTube 相关规则（📹 YouTube）
+  youtube_rules: {
+    type: "http",
+    behavior: "domain",
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list",
+    path: "./rule_set/youtube_rules.list",
+    interval: 43200,
+    format: "list",
+    proxy: "📹 YouTube"
+  },
+  // TikTok 相关规则（🎶 TikTok）
+  tiktok_rules: {
+    type: "http",
+    behavior: "domain",
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list",
+    path: "./rule_set/tiktok_rules.list",
+    interval: 43200,
+    format: "list",
+    proxy: "🎶 TikTok"
+  },
+  // 谷歌服务规则（🇬 谷歌服务）
+  google_rules: {
+    type: "http",
+    behavior: "domain",
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list",
+    path: "./rule_set/google_rules.list",
+    interval: 43200,
+    format: "list",
+    proxy: "🇬 谷歌服务"
+  },
+  // Copilot 相关规则（Ⓜ️ Copilot）
+  copilot_rules: {
+    type: "http",
+    behavior: "domain",
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.list",
+    path: "./rule_set/copilot_rules.list",
+    interval: 43200,
+    format: "list",
+    proxy: "Ⓜ️ Copilot"
+  },
+  // OneDrive 相关规则（Ⓜ️ OneDrive）
+  onedrive_rules: {
+    type: "http",
+    behavior: "domain",
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive.list",
+    path: "./rule_set/onedrive_rules.list",
+    interval: 43200,
+    format: "list",
+    proxy: "Ⓜ️ OneDrive"
+  },
+  // Steam 相关规则（🎮 Steam）
+  steam_rules: {
+    type: "http",
+    behavior: "domain",
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.list",
+    path: "./rule_set/steam_rules.list",
+    interval: 43200,
+    format: "list",
+    proxy: "🎮 Steam"
+  }
+};
+params["rule-providers"] = {
+  ...ruleProviders,
+  ...customRuleProviders
+};
+const additionalRules = [
+  "RULE-SET,github_rules,🚀 GitHub",
+  "RULE-SET,twitter_rules,✖️ X",
+  "RULE-SET,youtube_rules,📹 YouTube",
+  "RULE-SET,tiktok_rules,🎶 TikTok",
+  "RULE-SET,google_rules,🇬 谷歌服务",
+  "RULE-SET,copilot_rules,Ⓜ️ Copilot",
+  "RULE-SET,onedrive_rules,Ⓜ️ OneDrive",
+  "RULE-SET,steam_rules,🎮 Steam"
+];
+
+// 此处插入 additionalRules 到现有 rules 数组之前
+params["rules"] = [
+  ...additionalRules,
+  ...rules
+];
 
     params["rule-providers"] = ruleProviders;
     params["rules"] = rules;
