@@ -1,3 +1,4 @@
+
 // Mihomo Party 覆写 / Clash Verge Rev 扩展脚本
 
 function main(params) {
@@ -9,7 +10,7 @@ function main(params) {
     overwriteHosts(params);
     overwriteTunnel(params);
     overwriteProxyGroups(params);
-    overwriteRules(params);
+    overwriteRules(params); // 新增规则覆写
     return params;
 }
 
@@ -585,77 +586,77 @@ function overwriteProxyGroups(params) {
          {
             name: "🚀 GitHub",
             type: "select",
-            proxies: ["🎯全球直连", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/github.png"
         },
         {
             name: "✈️ 电报信息",
             type: "select",
-            proxies: ["🎯全球直连","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png"
         },
         {
             name: "🤖 AIGC",
             type: "select",
-            proxies: ["🎯全球直连","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png"
         },
          {
             name: "✖️ X",
             type: "select",
-            proxies: ["🎯全球直连","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Twitter.png"
         },
         {
             name: "📹 YouTube",
             type: "select",
-            proxies: ["🎯全球直连","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/YouTube.png"
         },
         {
             name: "🎶 TikTok",
             type: "select",
-            proxies: ["🎯全球直连","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TikTok.png"
         },  
        {
             name: "🇬 谷歌服务",
             type: "select",
-            proxies: ["🎯全球直连", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png"
         },
         {
             name: "Ⓜ️ Copilot",
             type: "select",
-            proxies: ["🎯全球直连", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png"
         },
          {
             name: "Ⓜ️ 微软服务",
             type: "select",
-            proxies: ["🎯全球直连", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png"
         },
         {
             name: "Ⓜ️ OneDrive",
             type: "select",
-            proxies: ["🎯全球直连", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/OneDrive.png"
         },
         {
             name: "🎮 Steam",
             type: "select",
-            proxies: ["🎯全球直连", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Steam.png"
         },
@@ -669,7 +670,377 @@ function overwriteProxyGroups(params) {
 }
 
 // 覆写规则
+function overwriteRules(params) {
+    const adNonipRules = [
+        "RULE-SET,reject_non_ip,REJECT",
+        "RULE-SET,reject_domainset,REJECT",
+        "RULE-SET,reject_non_ip_drop,REJECT-DROP",
+        "RULE-SET,reject_non_ip_no_drop,REJECT"
+    ];
 
+    const customRules = [
+        // 在此添加自定义规则，优先级次于ad。例子：
+        // "DOMAIN,baidu.com,DIRECT",
+    ];
+
+    const nonipRules = [
+        "RULE-SET,github,🚀 GitHub",
+        "RULE-SET,telegram,✈️ 电报信息",
+        "RULE-SET,openai,🤖 AIGC",
+        "RULE-SET,twitter,✖️ X",
+        "RULE-SET,youtube,📹 YouTube",
+        "RULE-SET,tiktok,🎶 TikTok",
+        "RULE-SET,google,🇬 谷歌服务",
+        "RULE-SET,copilot,Ⓜ️ Copilot",
+        "RULE-SET,microsoft,Ⓜ️ 微软服务",
+        "RULE-SET,onedrive,Ⓜ️ OneDrive",
+        "RULE-SET,steam,🎮 Steam",
+        "RULE-SET,custom_direct,DIRECT",
+        "RULE-SET,direct_blackmatrix,DIRECT",
+        "RULE-SET,steam_cdn,DIRECT",
+        "RULE-SET,custom_proxy,🎯 节点选择",
+        "RULE-SET,cdn_domainset,🎯 节点选择",
+        "RULE-SET,cdn_non_ip,🎯 节点选择",
+        "RULE-SET,download_domainset,🎯 节点选择",
+        "RULE-SET,download_non_ip,🎯 节点选择",
+        "RULE-SET,microsoft_cdn_non_ip,DIRECT",
+        "RULE-SET,global_non_ip,🎯 节点选择",
+        "RULE-SET,domestic_non_ip,DIRECT",
+        "RULE-SET,direct_non_ip,DIRECT",
+        "RULE-SET,lan_non_ip,DIRECT"
+    ];
+
+    const allNonipRules = [
+        ...adNonipRules,
+        ...customRules,
+        ...nonipRules
+    ];
+
+    const ipRules = [
+        "RULE-SET,reject_ip,REJECT",
+        "RULE-SET,lan_ip,DIRECT",
+        "RULE-SET,domestic_ip,DIRECT",
+        "RULE-SET,china_ip,DIRECT",
+        "MATCH,🎯 节点选择"
+    ];
+
+    const rules = [
+        // 非ip类规则
+        ...allNonipRules,
+        // ip类规则
+        ...ipRules
+    ];
+
+    const ruleProviders = {
+        // 去广告
+        reject_non_ip_no_drop: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/reject-no-drop.txt",
+            path: "./rule_set/sukkaw_ruleset/reject_non_ip_no_drop.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        reject_non_ip_drop: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/reject-drop.txt",
+            path: "./rule_set/sukkaw_ruleset/reject_non_ip_drop.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        reject_non_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/reject.txt",
+            path: "./rule_set/sukkaw_ruleset/reject_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        reject_domainset: {
+            type: "http",
+            behavior: "domain",
+            url: "https://ruleset.skk.moe/Clash/domainset/reject.txt",
+            path: "./rule_set/sukkaw_ruleset/reject_domainset.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        reject_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/ip/reject.txt",
+            path: "./rule_set/sukkaw_ruleset/reject_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        // 静态cdn
+        cdn_domainset: {
+            type: "http",
+            behavior: "domain",
+            url: "https://ruleset.skk.moe/Clash/domainset/cdn.txt",
+            path: "./rule_set/sukkaw_ruleset/cdn_domainset.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        cdn_non_ip: {
+            type: "http",
+            behavior: "domain",
+            url: "https://ruleset.skk.moe/Clash/non_ip/cdn.txt",
+            path: "./rule_set/sukkaw_ruleset/cdn_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+
+        // microsoft
+        microsoft_cdn_non_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt",
+            path: "./rule_set/sukkaw_ruleset/microsoft_cdn_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        microsoft_non_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/microsoft.txt",
+            path: "./rule_set/sukkaw_ruleset/microsoft_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        // 软件更新、操作系统等大文件下载
+        download_domainset: {
+            type: "http",
+            behavior: "domain",
+            url: "https://ruleset.skk.moe/Clash/domainset/download.txt",
+            path: "./rule_set/sukkaw_ruleset/download_domainset.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        download_non_ip: {
+            type: "http",
+            behavior: "domain",
+            url: "https://ruleset.skk.moe/Clash/non_ip/download.txt",
+            path: "./rule_set/sukkaw_ruleset/download_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        // 内网域名和局域网 IP
+        lan_non_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/lan.txt",
+            path: "./rule_set/sukkaw_ruleset/lan_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        lan_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/ip/lan.txt",
+            path: "./rule_set/sukkaw_ruleset/lan_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        domestic_non_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/domestic.txt",
+            path: "./rule_set/sukkaw_ruleset/domestic_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        direct_non_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/direct.txt",
+            path: "./rule_set/sukkaw_ruleset/direct_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        global_non_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/non_ip/global.txt",
+            path: "./rule_set/sukkaw_ruleset/global_non_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        domestic_ip: {
+            type: "http",
+            behavior: "classical",
+            url: "https://ruleset.skk.moe/Clash/ip/domestic.txt",
+            path: "./rule_set/sukkaw_ruleset/domestic_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        china_ip: {
+            type: "http",
+            behavior: "ipcidr",
+            url: "https://ruleset.skk.moe/Clash/ip/china_ip.txt",
+            path: "./rule_set/sukkaw_ruleset/china_ip.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        steam_cdn: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Steam_CDN.list",
+            path: "./rule_set/sukkaw_ruleset/steam_cdn.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        direct_blackmatrix: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.list",
+            path: "./rule_set/sukkaw_ruleset/direct_blackmatrix.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        github: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GitHub/GitHub.list",
+            path: "./rule_set/sukkaw_ruleset/github.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        telegram: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Telegram/Telegram.list",
+            path: "./rule_set/sukkaw_ruleset/telegram.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        openai: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.list",
+            path: "./rule_set/sukkaw_ruleset/openai.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        twitter: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.list",
+            path: "./rule_set/sukkaw_ruleset/twitter.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        youtube: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list",
+            path: "./rule_set/sukkaw_ruleset/youtube.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        tiktok: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list",
+            path: "./rule_set/sukkaw_ruleset/tiktok.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        google: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list",
+            path: "./rule_set/sukkaw_ruleset/google.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        copilot: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.list",
+            path: "./rule_set/sukkaw_ruleset/copilot.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        microsoft: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Microsoft/Microsoft.list",
+            path: "./rule_set/sukkaw_ruleset/microsoft.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        onedrive: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive.list",
+            path: "./rule_set/sukkaw_ruleset/onedrive.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        steam: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.list",
+            path: "./rule_set/sukkaw_ruleset/steam.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        custom_proxy: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Custom_Proxy.list",
+            path: "./rule_set/sukkaw_ruleset/custom_proxy.txt",
+            interval: 28800,
+            format: "text",
+            proxy: "🎯 节点选择"
+        },
+        custom_direct: {
+            type: "http",
+            behavior: "classical",
+            url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Custom_Direct.list",
+            path: "./rule_set/sukkaw_ruleset/custom_direct.txt",
+            interval: 43200,
+            format: "text",
+            proxy: "🎯 节点选择"
+};
+        
+    };
+
+    params["rule-providers"] = ruleProviders;
+    params["rules"] = rules;
+}
 
 function getProxiesByRegex(params, regex) {
     const matchedProxies = params.proxies.filter((e) => regex.test(e.name)).map((e) => e.name);
