@@ -78,7 +78,7 @@ function overwriteDns(params) {
 }
 
 // 覆写DNS.Fake IP Filter
-function overwriteFakeIpFilter (params) {
+function overwriteFakeIpFilter(params) {
     const fakeIpFilter = [
         "+.+m2m",
         "+.$injections.adguard.org",
@@ -104,7 +104,7 @@ function overwriteFakeIpFilter (params) {
 }
 
 // 覆写DNS.Nameserver Policy
-function overwriteNameserverPolicy (params) {
+function overwriteNameserverPolicy(params) {
     const nameserverPolicy = {
         "dns.alidns.com": "quic://223.5.5.5:853",
         "doh.pub": "https://1.12.12.12/dns-query",
@@ -427,7 +427,7 @@ function overwriteNameserverPolicy (params) {
 }
 
 // 覆写hosts
-function overwriteHosts (params) {
+function overwriteHosts(params) {
     const hosts = {
         "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
         "doh.pub": ['120.53.53.53', '1.12.12.12'],
@@ -557,7 +557,7 @@ function overwriteProxyGroups(params) {
             name: "手动选择",
             type: "select",
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Cylink.png",
-            proxies: ["HK - 手动选择", "JP - 手动选择", "SG - 手动选择", "US - 手动选择","TW - 手动选择"],
+            proxies: ["HK - 手动选择", "JP - 手动选择", "SG - 手动选择", "US - 手动选择", "TW - 手动选择"],
         },
         {
             name: "自动选择",
@@ -583,7 +583,7 @@ function overwriteProxyGroups(params) {
             proxies: allProxies,
             hidden: true,
         },
-         {
+        {
             name: "🚀 GitHub",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
@@ -593,39 +593,39 @@ function overwriteProxyGroups(params) {
         {
             name: "✈️ 电报信息",
             type: "select",
-            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png"
         },
         {
             name: "🤖 AIGC",
             type: "select",
-            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png"
         },
-         {
+        {
             name: "✖️ X",
             type: "select",
-            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Twitter.png"
         },
         {
             name: "📹 YouTube",
             type: "select",
-            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/YouTube.png"
         },
         {
             name: "🎶 TikTok",
             type: "select",
-            proxies: ["DIRECT","🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
+            proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TikTok.png"
-        },  
-       {
+        },
+        {
             name: "🇬 谷歌服务",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
@@ -639,7 +639,7 @@ function overwriteProxyGroups(params) {
             // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png"
         },
-         {
+        {
             name: "Ⓜ️ 微软服务",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
@@ -691,9 +691,9 @@ function overwriteRules(params) {
         "RULE-SET,youtube,📹 YouTube",
         "RULE-SET,tiktok,🎶 TikTok",
         "RULE-SET,google,🇬 谷歌服务",
+        "RULE-SET,onedrive,Ⓜ️ OneDrive",
         "RULE-SET,copilot,Ⓜ️ Copilot",
         "RULE-SET,microsoft,Ⓜ️ 微软服务",
-        "RULE-SET,onedrive,Ⓜ️ OneDrive",
         "RULE-SET,steam,🎮 Steam",
         "RULE-SET,custom_direct,DIRECT",
         "RULE-SET,direct_blackmatrix,DIRECT",
@@ -1035,7 +1035,7 @@ function overwriteRules(params) {
             format: "text",
             proxy: "🎯 节点选择"
         }
-        
+
     };
 
     params["rule-providers"] = ruleProviders;
