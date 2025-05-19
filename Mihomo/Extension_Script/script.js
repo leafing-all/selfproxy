@@ -1034,7 +1034,7 @@ function overwriteRules(params) {
             interval: 43200,
             format: "text",
             proxy: "🎯 节点选择"
-};
+        }
         
     };
 
