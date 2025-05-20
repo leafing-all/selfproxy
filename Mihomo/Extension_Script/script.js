@@ -1,6 +1,3 @@
-
-// Mihomo Party 覆写 / Clash Verge Rev 扩展脚本
-
 function main(params) {
     if (!params.proxies) return params;
     overwriteBasicOptions(params);
@@ -10,11 +7,11 @@ function main(params) {
     overwriteHosts(params);
     overwriteTunnel(params);
     overwriteProxyGroups(params);
-    overwriteRules(params); // 新增规则覆写
+    overwriteRules(params);
     return params;
 }
 
-// 覆写Basic Options
+// 1. 保持原有 Basic Options
 function overwriteBasicOptions(params) {
     const otherOptions = {
         "mixed-port": 7897,
@@ -33,37 +30,27 @@ function overwriteBasicOptions(params) {
         sniffer: {
             enable: true,
             sniff: {
-                HTTP: {
-                    ports: [80, "8080-8880"],
-                    "override-destination": true,
-                },
-                TLS: {
-                    ports: [443, 8443],
-                },
-                QUIC: {
-                    ports: [443, 8443],
-                },
+                HTTP: { ports: [80, "8080-8880"], "override-destination": true },
+                TLS: { ports: [443, 8443] },
+                QUIC: { ports: [443, 8443] },
             },
             "skip-domain": ["Mijia Cloud", "+.push.apple.com"]
         },
     };
-    Object.keys(otherOptions).forEach((key) => {
-        params[key] = otherOptions[key];
-    });
+    Object.assign(params, otherOptions);
 }
 
-// 覆写DNS
+// 2. 覆写 DNS：同时指定境外 DoH 与国内 IP
 function overwriteDns(params) {
-    const dnsList = [
-        "https://223.5.5.5/dns-query",
-        "https://doh.pub/dns-query",
+    const domesticDns = [
+        "211.138.106.2",
+        "211.138.106.7",
+        "2409:800c:2000::7",
+        "2409:800c:2000::2"
     ];
-
-    const proxyDnsList = [
-        "https://223.5.5.5/dns-query",
-        "https://doh.pub/dns-query",
+    const foreignDns = [
+        "https://dns.google/dns-query"
     ];
-
     const dnsOptions = {
         enable: true,
         "prefer-h3": true,
@@ -71,40 +58,45 @@ function overwriteDns(params) {
         "enhanced-mode": "fake-ip",
         "fake-ip-range": "198.18.0.1/16",
         "respect-rules": true,
-        nameserver: dnsList,
-        "proxy-server-nameserver": proxyDnsList,
+        // 主 nameserver 列表：境外优先，其次自动根据 nameserver-policy 跳转到国内
+        nameserver: [...foreignDns, ...domesticDns],
+        // 代理服务器使用的 nameserver，同上
+        "proxy-server-nameserver": [...foreignDns, ...domesticDns],
     };
-    params.dns = { ...dnsOptions };
+    params.dns = dnsOptions;
 }
 
-// 覆写DNS.Fake IP Filter
+// 3. 保持原有 Fake IP Filter
 function overwriteFakeIpFilter(params) {
-    const fakeIpFilter = [
-        "+.+m2m",
-        "+.$injections.adguard.org",
-        "+.$local.adguard.org",
-        "+.+bogon",
-        "+.+lan",
-        "+.+local",
-        "+.+localdomain",
-        "+.home.arpa",
-        "dns.msftncsi.com",
-        "*.srv.nintendo.net",
-        "*.stun.playstation.net",
-        "xbox.*.microsoft.com",
-        "*.xboxlive.com",
-        "*.turn.twilio.com",
-        "*.stun.twilio.com",
-        "stun.syncthing.net",
-        "stun.*",
-        "*.sslip.io",
-        "*.nip.io"
+    params.dns["fake-ip-filter"] = [
+        "+.+m2m", "+.$injections.adguard.org", "+.$local.adguard.org",
+        "+.+bogon", "+.+lan", "+.+local", "+.+localdomain", "+.home.arpa",
+        "dns.msftncsi.com", "*.srv.nintendo.net", "*.stun.playstation.net",
+        "xbox.*.microsoft.com", "*.xboxlive.com", "*.turn.twilio.com",
+        "*.stun.twilio.com", "stun.syncthing.net", "stun.*",
+        "*.sslip.io", "*.nip.io"
     ];
-    params.dns["fake-ip-filter"] = fakeIpFilter;
 }
 
-// 覆写DNS.Nameserver Policy
+// 4. 覆写 DNS.Nameserver Policy：新增国内/境外规则并合并原有映射
 function overwriteNameserverPolicy(params) {
+    // 国内域名走国内 DNS
+    const domesticPolicy = {
+        "rule-set:CN域名": [
+            "211.138.106.2",
+            "211.138.106.7",
+            "2409:800c:2000::7",
+            "2409:800c:2000::2"
+        ]
+    };
+    // 境外域名走谷歌 DoH
+    const foreignPolicy = {
+        "rule-set:Foreign": [
+            "https://dns.google/dns-query"
+        ]
+    };
+
+    // 原有的 nameserver 映射（此处定义了大量规则）
     const nameserverPolicy = {
         "dns.alidns.com": "quic://223.5.5.5:853",
         "doh.pub": "https://1.12.12.12/dns-query",
@@ -423,20 +415,35 @@ function overwriteNameserverPolicy(params) {
         "*.localdomain": "system",
         "+.home.arpa": "system"
     };
-    params.dns["nameserver-policy"] = nameserverPolicy;
-}
 
-// 覆写hosts
-function overwriteHosts(params) {
-    const hosts = {
-        "dns.alidns.com": ['223.5.5.5', '223.6.6.6', '2400:3200:baba::1', '2400:3200::1'],
-        "doh.pub": ['120.53.53.53', '1.12.12.12'],
-        "cdn.jsdelivr.net": "cdn.jsdelivr.net.cdn.cloudflare.net"
+    // 将新增的国内/境外规则与原有映射合并
+    params.dns["nameserver-policy"] = {
+        ...domesticPolicy,
+        ...foreignPolicy,
+        ...nameserverPolicy
     };
-    params.hosts = hosts;
 }
 
-// 覆写Tunnel
+// 5. 覆写 hosts：常用 DNS 服务域名固定指向国内 DNS，其它不变
+function overwriteHosts(params) {
+    params.hosts = {
+        "dns.alidns.com": [
+            "211.138.106.2",
+            "211.138.106.7",
+            "2409:800c:2000::7",
+            "2409:800c:2000::2"
+        ],
+        "doh.pub": [
+            "211.138.106.2",
+            "211.138.106.7",
+            "2409:800c:2000::7",
+            "2409:800c:2000::2"
+        ],
+        // 如果您有其它常驻 hosts 需求，可在此处继续添加
+    };
+}
+
+// 覆写 Tunnel
 function overwriteTunnel(params) {
     const tunnelOptions = {
         enable: true,
@@ -451,7 +458,6 @@ function overwriteTunnel(params) {
     };
     params.tun = { ...tunnelOptions };
 }
-
 // 覆写代理组
 function overwriteProxyGroups(params) {
     // 所有代理
@@ -534,9 +540,6 @@ function overwriteProxyGroups(params) {
 
     // 负载均衡策略
     // 可选值：round-robin / consistent-hashing / sticky-sessions
-    // round-robin：轮询 按顺序循环使用代理列表中的节点
-    // consistent-hashing：散列 根据请求的哈希值将请求分配到固定的节点
-    // sticky-sessions：缓存 对「你的设备IP + 目标地址」组合计算哈希值，根据哈希值将请求分配到固定的节点 缓存 10 分钟过期
     // 默认值：consistent-hashing
     const loadBalanceStrategy = "consistent-hashing";
 
@@ -587,83 +590,73 @@ function overwriteProxyGroups(params) {
             name: "🚀 GitHub",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/github.png"
         },
         {
             name: "✈️ 电报信息",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png"
         },
         {
             name: "🤖 AIGC",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png"
         },
         {
             name: "✖️ X",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Twitter.png"
         },
         {
             name: "📹 YouTube",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/YouTube.png"
         },
         {
             name: "🎶 TikTok",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TikTok.png"
         },
         {
             name: "🇬 谷歌服务",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png"
         },
         {
             name: "Ⓜ️ Copilot",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png"
         },
         {
             name: "Ⓜ️ 微软服务",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png"
         },
         {
             name: "Ⓜ️ OneDrive",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/OneDrive.png"
         },
         {
             name: "🎮 Steam",
             type: "select",
             proxies: ["DIRECT", "🎯 节点选择", "HK - 自动选择", "JP - 自动选择", "SG - 自动选择", "US - 自动选择", "TW - 自动选择", "其它 - 自动选择"],
-            // "include-all": true,
             icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Steam.png"
         },
     ];
 
-    autoProxyGroups.length &&
+    if (autoProxyGroups.length) {
         groups[2].proxies.unshift(...autoProxyGroups.map((item) => item.name));
+    }
     groups.push(...autoProxyGroups);
     groups.push(...manualProxyGroupsConfig);
     params["proxy-groups"] = groups;
@@ -1035,7 +1028,6 @@ function overwriteRules(params) {
             format: "text",
             proxy: "🎯 节点选择"
         }
-
     };
 
     params["rule-providers"] = ruleProviders;
