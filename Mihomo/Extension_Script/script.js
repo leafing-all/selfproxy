@@ -69,7 +69,7 @@ function overwriteDns(params) {
 // 3. 保持原有 Fake IP Filter
 function overwriteFakeIpFilter(params) {
     params.dns["fake-ip-filter"] = [
-        "+.+m2m", "+.$injections.adguard.org", "+.$local.adguard.org",
+        "+.+m2m", "+.$local.adguard.org",
         "+.+bogon", "+.+lan", "+.+local", "+.+localdomain", "+.home.arpa",
         "dns.msftncsi.com", "*.srv.nintendo.net", "*.stun.playstation.net",
         "xbox.*.microsoft.com", "*.xboxlive.com", "*.turn.twilio.com",
@@ -664,13 +664,6 @@ function overwriteProxyGroups(params) {
 
 // 覆写规则
 function overwriteRules(params) {
-    const adNonipRules = [
-        "RULE-SET,reject_non_ip,REJECT",
-        "RULE-SET,reject_domainset,REJECT",
-        "RULE-SET,reject_non_ip_drop,REJECT-DROP",
-        "RULE-SET,reject_non_ip_no_drop,REJECT"
-    ];
-
     const customRules = [
         // 在此添加自定义规则，优先级次于ad。例子：
         // "DOMAIN,baidu.com,DIRECT",
@@ -704,13 +697,11 @@ function overwriteRules(params) {
     ];
 
     const allNonipRules = [
-        ...adNonipRules,
         ...customRules,
         ...nonipRules
     ];
 
     const ipRules = [
-        "RULE-SET,reject_ip,REJECT",
         "RULE-SET,lan_ip,DIRECT",
         "RULE-SET,domestic_ip,DIRECT",
         "RULE-SET,china_ip,DIRECT",
@@ -725,52 +716,6 @@ function overwriteRules(params) {
     ];
 
     const ruleProviders = {
-        // 去广告
-        reject_non_ip_no_drop: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/reject-no-drop.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_non_ip_no_drop.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        reject_non_ip_drop: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/reject-drop.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_non_ip_drop.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        reject_non_ip: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/non_ip/reject.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_non_ip.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        reject_domainset: {
-            type: "http",
-            behavior: "domain",
-            url: "https://ruleset.skk.moe/Clash/domainset/reject.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_domainset.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
-        reject_ip: {
-            type: "http",
-            behavior: "classical",
-            url: "https://ruleset.skk.moe/Clash/ip/reject.txt",
-            path: "./rule_set/sukkaw_ruleset/reject_ip.txt",
-            interval: 43200,
-            format: "text",
-            proxy: "🎯 节点选择"
-        },
         // 静态cdn
         cdn_domainset: {
             type: "http",
